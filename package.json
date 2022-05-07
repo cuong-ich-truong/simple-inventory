@@ -13,8 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.2.0",
+    "better-sqlite3": "^7.5.1",
+    "datasource-sql": "^2.0.1",
     "graphql": "^15.5.1",
-    "nodemon": "^2.0.16"
+    "knex": "^2.0.0",
+    "nodemon": "^2.0.16",
   },
   "devDependencies": {
     "jest": "^28.0.3"

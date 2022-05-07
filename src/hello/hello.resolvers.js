@@ -1,3 +1,6 @@
+/**
+ * Simple resolvers for status check
+ */
 const helloResolvers = {
   Query: {
     hello: (_, { name }) =>
