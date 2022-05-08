@@ -6,6 +6,8 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "test": "jest",
+    "lint": "eslint .  --ext .js",
+    "lint:fix": "eslint --fix .  --ext .js",
     "start": "nodemon src/index.js",
     "start:ci": "node src/index.js"
   },
@@ -17,9 +19,10 @@
     "datasource-sql": "^2.0.1",
     "graphql": "^15.5.1",
     "knex": "^2.0.0",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.16"
   },
   "devDependencies": {
+    "eslint": "^8.15.0",
     "jest": "^28.0.3"
   },
   "jest": {

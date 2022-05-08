@@ -2,15 +2,9 @@ const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./graphQL/schema');
 const resolvers = require('./graphQL/resolvers');
 const InventoryDatabase = require('./database');
+const knexInstance = require('./knex');
 
-const knex = require('knex')({
-  client: 'better-sqlite3',
-  connection: {
-    filename: ':memory:',
-  },
-});
-
-const inventoryDb = new InventoryDatabase(knex);
+const inventoryDb = new InventoryDatabase(knexInstance);
 inventoryDb.runSeed();
 
 const server = new ApolloServer({

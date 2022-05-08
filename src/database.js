@@ -5,7 +5,7 @@ class InventoryDatabase extends SQLDataSource {
   async runSeed() {
     await this.knex.schema.createTable(ITEMS_TBL, (table) => {
       table.increments('id').primary();
-      table.string('name');
+      table.string('name').notNullable();
       table.string('description');
       table.string('tags');
       table.float('price');
