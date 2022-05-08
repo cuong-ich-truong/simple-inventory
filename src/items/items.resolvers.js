@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 const { getItemsQuery, getItemByIdQuery } = require('./items.queries');
+const { addItemMutation } = require('./items.mutations');
 
 const itemsResolvers = {
   Query: {
@@ -10,11 +12,14 @@ const itemsResolvers = {
      * @param {*} info Contains information about the operation's execution state, including the field name, the path to the field from the root, and more.
      * @returns
      */
-    // eslint-disable-next-line no-unused-vars
     getItems: (parent, args, context, info) =>
       getItemsQuery(context.dataSources.inventoryDb.knex),
-    getItemById: (parent, args, context) =>
+    getItemById: (parent, args, context, info) =>
       getItemByIdQuery(args, context.dataSources.inventoryDb.knex),
+  },
+  Mutation: {
+    addItem: (parent, args, context, info) =>
+      addItemMutation(args, context.dataSources.inventoryDb.knex),
   },
 };
 

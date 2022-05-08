@@ -20,6 +20,17 @@ const typeDefs = gql`
     "Get an item by Id"
     getItemById(id: ID!): Item
   }
+
+  type Mutation {
+    "Add an item"
+    addItem(
+      name: String!
+      description: String
+      tags: [String]
+      price: Float
+      currency: String
+    ): ID
+  }
 `;
 
 module.exports = typeDefs;
