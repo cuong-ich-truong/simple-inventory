@@ -1,4 +1,5 @@
 const { ITEMS_TBL } = require('../constant');
+const { sendEventMessage } = require('../services/message-producer.service');
 
 /**
  * Add a new record to Items table
@@ -18,7 +19,16 @@ const addItemMutation = async (args, db) => {
     currency,
   });
 
-  return newRecords.length > 0 ? newRecords[0] : null;
+  if (newRecords.length < 1) {
+    return null;
+  }
+
+  sendEventMessage({
+    event: 'ItemAdded',
+    args: { id: newRecords[0] },
+  });
+
+  return newRecords[0];
 };
 
 module.exports = { addItemMutation };
