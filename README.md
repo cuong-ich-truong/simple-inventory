@@ -1,4 +1,5 @@
 # simple-inventory
+
 A Simple GraphQL server
 
 ## System Requirements
@@ -43,17 +44,19 @@ The GraphQL server will be available at <http://localhost:4000/>
 
 ### Hello
 
-**Operation:**
+- Queries:
 
-```gql
+  - hello
+
+Example
+
+```js
+// Check sever status
 query {
   hello(name: "Cuong Truong")
 }
-```
 
-**Response:**
-
-```json
+// Response
 {
   "data": {
     "hello": "This is a simple inventory. Nice to meet you, Cuong Truong."
@@ -65,9 +68,17 @@ query {
 
 ### Items
 
-**Operation:**
+- Queries:
+  - getItems
+  - getItemById
+  - filterItems
+- Mutations:
+  - addItem
 
-```gql
+ Example:
+
+```js
+// Get all Items
 query GetItems {
   getItems {
     id
@@ -78,11 +89,8 @@ query GetItems {
     currency
   }
 }
-```
 
-**Response:**
-
-```json
+//Response:
 {
   "data": {
     "getItems": [
@@ -98,11 +106,8 @@ query GetItems {
     ]
   }
 }
-```
 
-**Operation:**
-
-```gql
+// Get an item by id
 query {
   getItemById(id: 1) {
     id
@@ -114,23 +119,27 @@ query {
   }
 }
 
-```
 
-**Response:**
-
-```json
-{
-  "data": {
-    "getItemById": {
-      "id": "1",
-      "name": "Sony X85J 65\" 4K UHD HDR LED Smart Google TV",
-      "description": "Experience your favourite movies, video games, and sports in true-to-life clarity with this 65\" Sony 4K UHD smart TV.",
-      "tags": [],
-      "price": 1097.98,
-      "currency": "USD"
-    }
+// Get all items with price from 500 to 1000
+query {
+  filterItems(
+    priceFrom: 500,
+    priceTo: 1000
+  ) {
+    id
+    name
+    description
+    price
   }
 }
-```
 
----
+// Add a new item
+mutation {
+  addItem(
+    name: "new 50\" Tv", 
+    description: "This is a new TV.", 
+    price: 900.98, 
+    currency: "USD", 
+    tags: ["New", "50\""])
+}
+```

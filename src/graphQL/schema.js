@@ -19,6 +19,14 @@ const typeDefs = gql`
 
     "Get an item by Id"
     getItemById(id: ID!): Item
+
+    "Filter items by search criteria"
+    filterItems(
+      name: String
+      description: String
+      priceFrom: Float
+      priceTo: Float
+    ): [Item]
   }
 
   type Mutation {

@@ -13,10 +13,18 @@ class InventoryDatabase extends SQLDataSource {
     });
 
     await this.knex.table(ITEMS_TBL).insert({
-      name: 'Sony X85J 65" 4K UHD HDR LED Smart Google TV',
+      name: 'Sony X85J 45" 4K UHD HDR LED Smart Google TV',
       description:
         'Experience your favourite movies, video games, and sports in true-to-life clarity with this 65" Sony 4K UHD smart TV.',
-      price: 1097.98,
+      price: 597.98,
+      currency: 'USD',
+    });
+
+    await this.knex.table(ITEMS_TBL).insert({
+      name: 'Sony X85J 55" 4K UHD HDR LED Smart Google TV',
+      description:
+        'Experience your favourite movies, video games, and sports in true-to-life clarity with this 65" Sony 4K UHD smart TV.',
+      price: 797.99,
       currency: 'USD',
     });
 

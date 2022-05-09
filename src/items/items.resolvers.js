@@ -1,5 +1,9 @@
 /* eslint-disable no-unused-vars */
-const { getItemsQuery, getItemByIdQuery } = require('./items.queries');
+const {
+  getItemsQuery,
+  getItemByIdQuery,
+  filterItemsQuery,
+} = require('./items.queries');
 const { addItemMutation } = require('./items.mutations');
 
 const itemsResolvers = {
@@ -16,6 +20,8 @@ const itemsResolvers = {
       getItemsQuery(context.dataSources.inventoryDb.knex),
     getItemById: (parent, args, context, info) =>
       getItemByIdQuery(args, context.dataSources.inventoryDb.knex),
+    filterItems: (parent, args, context, info) =>
+      filterItemsQuery(args, context.dataSources.inventoryDb.knex),
   },
   Mutation: {
     addItem: (parent, args, context, info) =>
