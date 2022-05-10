@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "eslint": "^8.15.0",
-    "jest": "^28.0.3"
+    "jest": "^28.0.3",
+    "knex-mock-client": "^1.8.0"
   },
   "jest": {
     "testPathIgnorePatterns": [
