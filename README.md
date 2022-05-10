@@ -97,7 +97,7 @@ npm run start:inventory
 
 ### GraphQL
 
-Launch [GraphQL playground](http://localhost:4000/)
+With the servers running, launch [GraphQL playground](http://localhost:4000/) and try some example queries or mutations below
 
 #### Hello
 
@@ -212,7 +212,7 @@ mutation {
 
 ### RestAPI
 
-[Actions API](http://localhost:4001/actions)
+With the Action Service running, use the [Actions API](http://localhost:4001/actions) to get all the actions created by the Inventory Service
 
 Example
 
@@ -224,7 +224,7 @@ curl http://localhost:4001/actions
 
 ## Diagrams
 
-### Item Filtering Workflow
+### Items Filtering Workflow
 
 ```mermaid
 sequenceDiagram
@@ -236,9 +236,9 @@ sequenceDiagram
     Inventory Server->>-User: Items
 ```
 
-[![Item Filtering Workflow](https://mermaid.ink/img/pako:eNp1kcFqwzAQRH9F6JRQ5wd0CBSSQg45tG5vvmyliSOwJHclhZqQf69cO1AarJPQvpmdXV2lDgZSyYivDK-xs9QyucaLcj4ieLPdPh38BT4FHkQNvoCVeLFdAh8SXFx5cqhEz1ZjPen-86PHjhJ9UoQSrxk8_Eon-l4p1Oax0xt0YBMXjY-IkVrsv_WZfFvsa3gzP67-xHzWyQa_HPCx85H69zCNOIdYj9pFh824LiXmyWQlHdiRNWW711HUyHSGQyNVuRqcKHepkY2_FTT3hhL2xhZLqU7URVSScgr14LVUiTPu0PxDM3X7AdsynH8)](https://mermaid.live/edit#pako:eNp1kcFqwzAQRH9F6JRQ5wd0CBSSQg45tG5vvmyliSOwJHclhZqQf69cO1AarJPQvpmdXV2lDgZSyYivDK-xs9QyucaLcj4ieLPdPh38BT4FHkQNvoCVeLFdAh8SXFx5cqhEz1ZjPen-86PHjhJ9UoQSrxk8_Eon-l4p1Oax0xt0YBMXjY-IkVrsv_WZfFvsa3gzP67-xHzWyQa_HPCx85H69zCNOIdYj9pFh824LiXmyWQlHdiRNWW711HUyHSGQyNVuRqcKHepkY2_FTT3hhL2xhZLqU7URVSScgr14LVUiTPu0PxDM3X7AdsynH8)
+[Items Filtering Workflow](https://mermaid.live/edit#pako:eNp1kcFqwzAQRH9F6JRQ5wd0CBSSQg45tG5vvmyliSOwJHclhZqQf69cO1AarJPQvpmdXV2lDgZSyYivDK-xs9QyucaLcj4ieLPdPh38BT4FHkQNvoCVeLFdAh8SXFx5cqhEz1ZjPen-86PHjhJ9UoQSrxk8_Eon-l4p1Oax0xt0YBMXjY-IkVrsv_WZfFvsa3gzP67-xHzWyQa_HPCx85H69zCNOIdYj9pFh824LiXmyWQlHdiRNWW711HUyHSGQyNVuRqcKHepkY2_FTT3hhL2xhZLqU7URVSScgr14LVUiTPu0PxDM3X7AdsynH8)
 
-### Message Handling Workflow
+### Messages Handling Workflow
 
 ```mermaid
 graph LR
@@ -252,4 +252,4 @@ graph LR
     ES --> ET[Event Table]
 ```
 
-[![Message Handling Workflow](https://mermaid.ink/img/pako:eNpt0dFqgzAUBuBXOZzr9gWEDcKWC2G2uMgoaC_O9FQFjRKTMql998Wqg8JydeD_wk9Obph3BWOApaG-go_PTIM_oUpDfWVtOzOCYnNlc4b9_nVqeRio5AmiUxotM8ifvCJd8nm5G51mCZMde34Rb0l4PEwg4lTktu40xI7dRkW8UHpEXqlNzZ11_ufUw4lkjQdI6LvZ0n9q5Zc8JBPIOJXzK55K5VrKc-KNWs1zpVwqZbKmWyHusGXTUl34pd1mm6GtuOUMAz8WfCHX2AwzfffU9QVZlkXtF4nBhZqBd0jOdmrUOQbWON7Qe03-D9pV3X8BMu-Ezw)](https://mermaid.live/edit#pako:eNpt0dFqgzAUBuBXOZzr9gWEDcKWC2G2uMgoaC_O9FQFjRKTMql998Wqg8JydeD_wk9Obph3BWOApaG-go_PTIM_oUpDfWVtOzOCYnNlc4b9_nVqeRio5AmiUxotM8ifvCJd8nm5G51mCZMde34Rb0l4PEwg4lTktu40xI7dRkW8UHpEXqlNzZ11_ufUw4lkjQdI6LvZ0n9q5Zc8JBPIOJXzK55K5VrKc-KNWs1zpVwqZbKmWyHusGXTUl34pd1mm6GtuOUMAz8WfCHX2AwzfffU9QVZlkXtF4nBhZqBd0jOdmrUOQbWON7Qe03-D9pV3X8BMu-Ezw)
+[Messages Handling Workflow](https://mermaid.live/edit#pako:eNpt0dFqgzAUBuBXOZzr9gWEDcKWC2G2uMgoaC_O9FQFjRKTMql998Wqg8JydeD_wk9Obph3BWOApaG-go_PTIM_oUpDfWVtOzOCYnNlc4b9_nVqeRio5AmiUxotM8ifvCJd8nm5G51mCZMde34Rb0l4PEwg4lTktu40xI7dRkW8UHpEXqlNzZ11_ufUw4lkjQdI6LvZ0n9q5Zc8JBPIOJXzK55K5VrKc-KNWs1zpVwqZbKmWyHusGXTUl34pd1mm6GtuOUMAz8WfCHX2AwzfffU9QVZlkXtF4nBhZqBd0jOdmrUOQbWON7Qe03-D9pV3X8BMu-Ezw)
