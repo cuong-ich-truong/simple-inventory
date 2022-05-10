@@ -25,7 +25,7 @@ const itemsResolvers = {
         action: 'getItems',
         args,
       });
-      return getItemsQuery(context.dataSources.inventoryDb.knex);
+      return getItemsQuery(args, context.dataSources.inventoryDb.knex);
     },
 
     getItemById: (parent, args, context, info) => {
@@ -41,6 +41,13 @@ const itemsResolvers = {
         action: 'filterItems',
         args,
       });
+
+      if (args.orderBy) {
+        sendActionMessage({
+          action: 'orderItems',
+          args: args.orderBy,
+        });
+      }
 
       return filterItemsQuery(args, context.dataSources.inventoryDb.knex);
     },

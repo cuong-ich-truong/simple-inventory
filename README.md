@@ -127,9 +127,11 @@ query {
  Example:
 
 ```js
-// Get all Items
-query GetItems {
-  getItems {
+// Get all items, order by price
+query {
+  getItems (orderBy: {
+    price: DESC
+  }) {
     id
     name
     description
@@ -169,11 +171,15 @@ query {
 }
 
 
-// Get all items with price from 500 to 1000
+// Get all items with price from 500 to 1000 and order by name then price
 query {
   filterItems(
     priceFrom: 500,
-    priceTo: 1000
+    priceTo: 1000,
+    orderBy: {
+      name: ASC
+      price: DESC
+    }
   ) {
     id
     name
@@ -192,3 +198,37 @@ mutation {
     tags: ["New", "50\""])
 }
 ```
+
+---
+
+## Diagrams
+
+### Item Filtering Workflow
+
+```mermaid
+sequenceDiagram
+    User->>+Inventory Server: FilterItems(name, price)
+    Inventory Server->>+Database: QueryItems
+    Database->>-Inventory Server: Records
+    Inventory Server->>MessageExchange: SendMessage(FilterItemsAction)
+    Inventory Server->>Inventory Server: MapToItems(Records)    
+    Inventory Server->>-User: Items
+```
+
+[![Item Filtering Workflow](https://mermaid.ink/img/pako:eNp1kcFqwzAQRH9F6JRQ5wd0CBSSQg45tG5vvmyliSOwJHclhZqQf69cO1AarJPQvpmdXV2lDgZSyYivDK-xs9QyucaLcj4ieLPdPh38BT4FHkQNvoCVeLFdAh8SXFx5cqhEz1ZjPen-86PHjhJ9UoQSrxk8_Eon-l4p1Oax0xt0YBMXjY-IkVrsv_WZfFvsa3gzP67-xHzWyQa_HPCx85H69zCNOIdYj9pFh824LiXmyWQlHdiRNWW711HUyHSGQyNVuRqcKHepkY2_FTT3hhL2xhZLqU7URVSScgr14LVUiTPu0PxDM3X7AdsynH8)](https://mermaid.live/edit#pako:eNp1kcFqwzAQRH9F6JRQ5wd0CBSSQg45tG5vvmyliSOwJHclhZqQf69cO1AarJPQvpmdXV2lDgZSyYivDK-xs9QyucaLcj4ieLPdPh38BT4FHkQNvoCVeLFdAh8SXFx5cqhEz1ZjPen-86PHjhJ9UoQSrxk8_Eon-l4p1Oax0xt0YBMXjY-IkVrsv_WZfFvsa3gzP67-xHzWyQa_HPCx85H69zCNOIdYj9pFh824LiXmyWQlHdiRNWW711HUyHSGQyNVuRqcKHepkY2_FTT3hhL2xhZLqU7URVSScgr14LVUiTPu0PxDM3X7AdsynH8)
+
+### Message Handling Workflow
+
+```mermaid
+graph LR
+    IS[Inventory Server] -->|message| MX[Message Exchange]
+    MX --> |type=ACTION| AQ[Action Queue]
+    AQ --> |action| AS[Action Service]
+    AS --> AT[Actions Table]
+    
+    MX --> |type=EVENT| EQ[Event Queue]
+    EQ --> |event| ES[Event Service]
+    ES --> ET[Event Table]
+```
+
+[![Message Handling Workflow](https://mermaid.ink/img/pako:eNpt0dFqgzAUBuBXOZzr9gWEDcKWC2G2uMgoaC_O9FQFjRKTMql998Wqg8JydeD_wk9Obph3BWOApaG-go_PTIM_oUpDfWVtOzOCYnNlc4b9_nVqeRio5AmiUxotM8ifvCJd8nm5G51mCZMde34Rb0l4PEwg4lTktu40xI7dRkW8UHpEXqlNzZ11_ufUw4lkjQdI6LvZ0n9q5Zc8JBPIOJXzK55K5VrKc-KNWs1zpVwqZbKmWyHusGXTUl34pd1mm6GtuOUMAz8WfCHX2AwzfffU9QVZlkXtF4nBhZqBd0jOdmrUOQbWON7Qe03-D9pV3X8BMu-Ezw)](https://mermaid.live/edit#pako:eNpt0dFqgzAUBuBXOZzr9gWEDcKWC2G2uMgoaC_O9FQFjRKTMql998Wqg8JydeD_wk9Obph3BWOApaG-go_PTIM_oUpDfWVtOzOCYnNlc4b9_nVqeRio5AmiUxotM8ifvCJd8nm5G51mCZMde34Rb0l4PEwg4lTktu40xI7dRkW8UHpEXqlNzZ11_ufUw4lkjQdI6LvZ0n9q5Zc8JBPIOJXzK55K5VrKc-KNWs1zpVwqZbKmWyHusGXTUl34pd1mm6GtuOUMAz8WfCHX2AwzfffU9QVZlkXtF4nBhZqBd0jOdmrUOQbWON7Qe03-D9pV3X8BMu-Ezw)

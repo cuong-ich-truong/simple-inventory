@@ -1,6 +1,16 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
+  enum Sort {
+    ASC
+    DESC
+  }
+
+  input OrderItemBy {
+    name: Sort
+    price: Sort
+  }
+
   type Item {
     id: ID!
     name: String!
@@ -15,7 +25,7 @@ const typeDefs = gql`
     hello(name: String!): String
 
     "Get all items"
-    getItems: [Item]
+    getItems(orderBy: OrderItemBy): [Item]
 
     "Get an item by Id"
     getItemById(id: ID!): Item
@@ -26,6 +36,7 @@ const typeDefs = gql`
       description: String
       priceFrom: Float
       priceTo: Float
+      orderBy: OrderItemBy
     ): [Item]
   }
 
