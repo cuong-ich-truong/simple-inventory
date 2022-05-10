@@ -6,6 +6,9 @@ A Simple GraphQL server
 
 - Node.js v8.x or later
 - npm v6.x or later
+- Docker to run RabbitMQ in local machine or a account in CloudAMQP
+
+---
 
 ## Data Sources
 
@@ -32,13 +35,61 @@ const knexInstance = require('knex')({
   },
 });
 ```
+---
 
-## Run Project
+## How To Run
 
-1. Install: `npm i`
-2. Start server: `npm run start`
+From the root folder
 
-The GraphQL server will be available at <http://localhost:4000/>
+1. To install packages, run
+
+```bash
+npm i 
+```
+
+2. Setup RabbitMQ (either run locally or on the cloud)
+  
+    2.1. Run locally using Docker
+
+      - Download and install [Docker](https://docs.docker.com/desktop/windows/install)
+      - In the **.env**, make sure the variable is set to local URL: `RABBITMQ_URL=amqp://localhost`
+      - To start the container, run
+
+      ```bash
+      npm run start:rbmq
+      ```
+
+      (you can also run `npm run stop:rbmq` to stop the container)
+
+    2.2 Run on cloud using CloudAMQP
+
+      - Create a free account at [CloudAMQP](https://customer.cloudamqp.com)
+      - Create an instance and obtain the AMQP URL
+      - In the **.env**, change the variable to your AMQP URL: `RABBITMQ_URL=amqps://wfozdkso:{password}@armadillo.rmq.cloudamqp.com/wfozdkso`
+
+3. With the RabbitMQ ready, now we can run both the message consumers
+
+  Start the Action Service by opening a new terminal and run
+  
+  ```bash
+  npm run start:action
+  ```
+
+  Start the Event Service by opening an other terminal and run
+  
+  ```bash
+  npm run start:event
+  ```
+
+4. Finally, open a new terminal and start the inventory server using this command
+
+```bash
+npm run start:inventory
+```
+
+5. The GraphQL server will be available at <http://localhost:4000/>
+
+---
 
 ## Queries and Mutations
 
@@ -63,8 +114,6 @@ query {
   }
 }
 ```
-
----
 
 ### Items
 
