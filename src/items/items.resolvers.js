@@ -5,10 +5,7 @@ const {
   filterItemsQuery,
 } = require('./items.queries');
 const { addItemMutation } = require('./items.mutations');
-const {
-  sendActionMessage,
-  sendEventMessage,
-} = require('../services/message-producer.service');
+const { sendActionMessage } = require('../services/message-producer.service');
 
 const itemsResolvers = {
   Query: {

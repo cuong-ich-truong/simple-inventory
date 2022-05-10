@@ -41,11 +41,13 @@ const knexInstance = require('knex')({
 
 From the root folder
 
-1. To install packages, run
+1. To install packages for all services, run
 
 ```bash
-npm i 
+sh ./scripts/install-all.sh
 ```
+
+(You can also run `npm i` for each service manually as well.)
 
 2. Setup RabbitMQ (either run locally or on the cloud)
   
@@ -93,7 +95,11 @@ npm run start:inventory
 
 ## Queries and Mutations
 
-### Hello
+### GraphQL
+
+Launch [GraphQL playground](http://localhost:4000/)
+
+#### Hello
 
 - Queries:
 
@@ -115,7 +121,7 @@ query {
 }
 ```
 
-### Items
+#### Items
 
 - Queries:
   - getItems
@@ -200,6 +206,21 @@ mutation {
 ```
 
 ---
+
+
+
+
+### RestAPI
+
+[Actions API](http://localhost:4001/actions)
+
+Example
+
+```curl
+curl http://localhost:4001/actions
+
+[{"id":1,"type":"ACTION","sender":"InventoryService","payload":{"action":"getItems","args":{"orderBy":{"price":"DESC"}}},"timestamp":1652183406580}]
+```
 
 ## Diagrams
 

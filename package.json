@@ -4,10 +4,11 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "install:all": "sh ./scripts/install-all.sh",
+    "install:fast": "sh ./scripts/install-fast.sh",
     "clean": "rm -rf node_modules",
     "test": "jest",
-    "lint": "eslint .  --ext .js",
-    "lint:fix": "eslint --fix .  --ext .js",
+    "lint": "eslint src/*.js && eslint services/action-service/src/*.js && eslint services/event-service/src/*.js",
     "start:rbmq": "docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.9-management",
     "stop:rbmq": "docker stop rabbitmq",
     "start:inventory": "nodemon src/index.js",

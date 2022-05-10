@@ -20,7 +20,7 @@ const sendMessage = (payload, messageType) => {
 
         const msgExchange = MESSAGE_EXCHANGE_NAME;
         const msg = {
-          source: 'InventoryService',
+          sender: 'InventoryService',
           type: messageType,
           payload,
           timestamp: Date.now(),
